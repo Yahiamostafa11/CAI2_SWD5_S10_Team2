@@ -20,6 +20,9 @@ namespace ECommerceMVC.Models {
         public string Phone { get; set; }
         public int Age { get; set; }
 
+        public string ApplicationUserId { get; set; }
+
+
         // Navigation properties
         public virtual ICollection<Address> Addresses { get; set; }
         public virtual ICollection<Cart> Carts { get; set; }
