@@ -1,0 +1,33 @@
+@model IEnumerable<ECommerceMVC.Models.Order>
+
+@{
+    ViewBag.Title = "My Orders";
+}
+
+<h2>My Orders</h2>
+
+@if (!Model.Any())
+{
+    <p>You have not placed any orders yet.</p>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>Order #</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th>Status</th>
+        </tr>
+
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>@order.OrderDate.ToShortDateString()</td>
+                <td>@order.OrderAmount</td>
+                <td>@order.OrderStatus</td>
+            </tr>
+        }
+    </table>
+}

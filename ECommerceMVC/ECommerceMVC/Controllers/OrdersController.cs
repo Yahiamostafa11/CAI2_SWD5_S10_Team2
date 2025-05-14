@@ -132,5 +132,23 @@ namespace ECommerceMVC.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [Authorize]
+        public ActionResult MyOrders()
+        {
+            string userId = User.Identity.GetUserId();
+            var customer = db.Customers.FirstOrDefault(c => c.ApplicationUserId == userId);
+            if (customer == null)
+                return RedirectToAction("Login", "Account");
+
+            var orders = db.Orders
+                           .Include(o => o.OrderItems.Select(oi => oi.Product))
+                           .Where(o => o.CustomerId == customer.CustomerId)
+                           .OrderByDescending(o => o.OrderDate)
+                           .ToList();
+
+            return View(orders);
+        }
+
     }
 }

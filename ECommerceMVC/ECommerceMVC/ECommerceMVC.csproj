@@ -16,7 +16,8 @@
     <RootNamespace>ECommerceMVC</RootNamespace>
     <AssemblyName>ECommerceMVC</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
+	<LangVersion>9.0</LangVersion>
+	<MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44360</IISExpressSSLPort>
@@ -169,6 +170,10 @@
     <Compile Include="Migrations\202505121821391_InitialCreate.Designer.cs">
       <DependentUpon>202505121821391_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202505141312357_AddUserToCustomer.cs" />
+    <Compile Include="Migrations\202505141312357_AddUserToCustomer.Designer.cs">
+      <DependentUpon>202505141312357_AddUserToCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -259,6 +264,8 @@
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Cart\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -293,6 +300,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202505121821391_InitialCreate.resx">
       <DependentUpon>202505121821391_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202505141312357_AddUserToCustomer.resx">
+      <DependentUpon>202505141312357_AddUserToCustomer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
