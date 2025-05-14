@@ -176,6 +176,11 @@
       <DependentUpon>202505141312357_AddUserToCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\IdentityMigrations\202505141728581_CreateIdentitySchema.cs" />
+    <Compile Include="Migrations\IdentityMigrations\202505141728581_CreateIdentitySchema.Designer.cs">
+      <DependentUpon>202505141728581_CreateIdentitySchema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\IdentityMigrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -306,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202505141312357_AddUserToCustomer.resx">
       <DependentUpon>202505141312357_AddUserToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\IdentityMigrations\202505141728581_CreateIdentitySchema.resx">
+      <DependentUpon>202505141728581_CreateIdentitySchema.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
