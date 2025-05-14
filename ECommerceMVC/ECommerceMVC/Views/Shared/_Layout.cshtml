@@ -37,3 +37,12 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+@if (User.Identity.IsAuthenticated)
+{
+    <li>@Html.ActionLink("My Orders", "MyOrders", "Orders")</li>
+}
+
+@if (User.IsInRole("Admin"))
+{
+    <li>@Html.ActionLink("Dashboard", "Dashboard", "Admin")</li>
+}

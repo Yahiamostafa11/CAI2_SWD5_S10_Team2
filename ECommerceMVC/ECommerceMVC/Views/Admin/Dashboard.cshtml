@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Admin Dashboard";
+}
+
+<h2>Admin Dashboard</h2>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">Users: @ViewBag.TotalUsers</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">Orders: @ViewBag.TotalOrders</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">Sales: $@ViewBag.TotalSales</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">Products: @ViewBag.TotalProducts</div>
+        </div>
+    </div>
+</div>
