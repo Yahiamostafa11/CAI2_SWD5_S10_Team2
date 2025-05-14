@@ -20,6 +20,22 @@
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("My Orders", "MyOrders", "Orders")</li>
+                    }
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Dashboard", "Dashboard", "Admin")</li>
+                    }
+
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Dashboard", "Dashboard", "Admin")</li>
+                    }
                 </ul>
             </div>
         </div>
@@ -37,12 +53,4 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
-@if (User.Identity.IsAuthenticated)
-{
-    <li>@Html.ActionLink("My Orders", "MyOrders", "Orders")</li>
-}
 
-@if (User.IsInRole("Admin"))
-{
-    <li>@Html.ActionLink("Dashboard", "Dashboard", "Admin")</li>
-}
