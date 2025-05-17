@@ -39,6 +39,35 @@ namespace ECommerceMVC.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
+            // Check if Categories exist
+            if (!db.Categories.Any())
+            {
+                // Create a default category if none exist
+                var category = new Category
+                {
+                    CategoryName = "Default Category"
+                    // Add other required properties based on your Category model
+                };
+                db.Categories.Add(category);
+                db.SaveChanges();
+                TempData["Message"] = "A default category was created because none existed.";
+            }
+
+            // Check if Sellers exist
+            if (!db.Sellers.Any())
+            {
+                // Create a default seller if none exist
+                var seller = new Seller
+                {
+                    Name = "Default Seller",
+                    Phone = "123-456-7890",
+                    TotalSales = 0
+                };
+                db.Sellers.Add(seller);
+                db.SaveChanges();
+                TempData["Message"] = "A default seller was created because none existed.";
+            }
+
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName");
             ViewBag.SellerId = new SelectList(db.Sellers, "SellerId", "Name");
             return View();
@@ -51,11 +80,33 @@ namespace ECommerceMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductId,ProductName,MRP,Stock,Brand,CategoryId,SellerId")] Product product)
         {
+            // Validate that CategoryId exists
+            bool categoryExists = db.Categories.Any(c => c.CategoryId == product.CategoryId);
+            if (!categoryExists)
+            {
+                ModelState.AddModelError("CategoryId", "The selected category does not exist.");
+            }
+
+            // Validate that SellerId exists
+            bool sellerExists = db.Sellers.Any(s => s.SellerId == product.SellerId);
+            if (!sellerExists)
+            {
+                ModelState.AddModelError("SellerId", "The selected seller does not exist.");
+            }
+
             if (ModelState.IsValid)
             {
-                db.Products.Add(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Products.Add(product);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception
+                    ModelState.AddModelError("", "Unable to save the product. " + ex.Message);
+                }
             }
 
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName", product.CategoryId);
@@ -121,6 +172,29 @@ namespace ECommerceMVC.Controllers
             Product product = db.Products.Find(id);
             db.Products.Remove(product);
             db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // Helper method to create a default seller
+        public ActionResult CreateDefaultSeller()
+        {
+            if (db.Sellers.Any())
+            {
+                TempData["Message"] = "Sellers already exist in the database.";
+                return RedirectToAction("Index");
+            }
+
+            var seller = new Seller
+            {
+                Name = "Default Seller",
+                Phone = "123-456-7890",
+                TotalSales = 0
+            };
+
+            db.Sellers.Add(seller);
+            db.SaveChanges();
+
+            TempData["Message"] = "Default seller created successfully!";
             return RedirectToAction("Index");
         }
 

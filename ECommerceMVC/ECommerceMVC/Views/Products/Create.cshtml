@@ -1,38 +1,45 @@
 ﻿@model ECommerceMVC.Models.Product
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Product";
 }
 
-<h2>Create</h2>
+<h2>Create Product</h2>
 
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["Message"]
+    </div>
+}
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Product</h4>
+        <h4>Product Details</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <div class="form-group">
-            @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProductName, "Product Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter product name" } })
                 @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MRP, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MRP, "Price", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MRP, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.MRP, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter price" } })
                 @Html.ValidationMessageFor(model => model.MRP, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Stock, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Stock, "In Stock", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.Stock)
@@ -42,39 +49,56 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Brand, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Brand, "Brand Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Brand, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Brand, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter brand name" } })
                 @Html.ValidationMessageFor(model => model.Brand, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CategoryId, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                @if (ViewBag.CategoryId != null && ((SelectList)ViewBag.CategoryId).Count() > 0)
+                {
+                    @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                }
+                else
+                {
+                    <p class="text-warning">No categories available. A default category will be created.</p>
+                    <input type="hidden" name="CategoryId" value="0" />
+                }
                 @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SellerId, "SellerId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SellerId, "Seller", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("SellerId", null, htmlAttributes: new { @class = "form-control" })
+                @if (ViewBag.SellerId != null && ((SelectList)ViewBag.SellerId).Count() > 0)
+                {
+                    @Html.DropDownList("SellerId", null, htmlAttributes: new { @class = "form-control" })
+                }
+                else
+                {
+                    <p class="text-warning">No sellers available. A default seller will be created.</p>
+                    <input type="hidden" name="SellerId" value="0" />
+                }
                 @Html.ValidationMessageFor(model => model.SellerId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create Product" class="btn btn-primary" />
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Products List", "Index")
 </div>
 
 @section Scripts {

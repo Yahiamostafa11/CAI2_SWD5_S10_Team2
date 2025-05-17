@@ -1,0 +1,34 @@
+﻿<header>
+    <div class="logo">ART Shop</div>
+    <nav>
+        <ul>
+            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+            <li><a href="#about">About</a></li> @* Placeholder - will need actual MVC routes or be part of a SPA-like section loading if kept as #links *@
+            <li><a href="#albums">Albums</a></li> @* Placeholder *@
+            <li><a href="#blog">Blog</a></li>   @* Placeholder *@
+            <li><a href="#contact">Contact</a></li> @* Placeholder *@
+            <li class="cart-icon">
+                <i class="fas fa-shopping-cart icon"></i>
+                <div class="cart-items">
+                    <ul id="cart-items-list">
+                        <li>Your cart is empty</li> @* This will be dynamic later *@
+                    </ul>
+                </div>
+            </li>
+            <li class="search-icon">
+                <i class="fas fa-search icon"></i>
+                <div class="search-container">
+                    <input type="text" placeholder="Search...">
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+@* Settings icon and panel - might be better in _Layout or specific views if not always present *@
+<i class="fa fa-cogs settings-icon"></i>
+<div class="settings-container">
+    <p>Settings Panel</p>
+    <label for="theme-color">Choose Theme Color:</label>
+    <input type="color" id="theme-color" name="theme-color" value="#76a5a9">
+</div>

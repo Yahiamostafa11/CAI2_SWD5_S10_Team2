@@ -3,8 +3,10 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
+using ECommerceMVC.Models;
 
 [assembly: OwinStartup(typeof(ECommerceMVC.Startup))]
+
 namespace ECommerceMVC
 {
     public class Startup
@@ -13,14 +15,13 @@ namespace ECommerceMVC
         {
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Account/Login")
+                LoginPath = new PathString("/Account/Login"),
+                SlidingExpiration = true
             });
-
         }
     }
 }

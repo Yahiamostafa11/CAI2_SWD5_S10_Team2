@@ -26,49 +26,43 @@ namespace ECommerceMVC
         // The CreateAdminRoleAndUser method should be part of the MvcApplication class
         private void CreateAdminRoleAndUser()
         {
-            // Make sure you have the correct ApplicationDbContext. 
-            // If your DbContext for Identity is different, use that one.
-            using (var context = new ApplicationDbContext()) // Or new ECommerceDbContext() if that's your Identity context
+            using (var context = new ApplicationDbContext())
             {
-                var roleManager = new RoleManager<IdentityRole>(
-                    new RoleStore<IdentityRole>(context));
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-                var userManager = new UserManager<ApplicationUser>(
-                    new UserStore<ApplicationUser>(context));
-
-                // Create Admin role if it doesn't exist
-                string adminRoleName = "Admin";
-                if (!roleManager.RoleExists(adminRoleName))
+                // 1. Create Admin role if not exists
+                if (!roleManager.RoleExists("Admin"))
                 {
-                    var role = new IdentityRole(adminRoleName);
+                    var role = new IdentityRole("Admin");
                     roleManager.Create(role);
                 }
 
-                // Assign admin user to Admin role
-                // Ensure the user "Yahiawork11@gmail.com" exists in your database before running this.
-                // This code assumes the user is already created (e.g., through a registration page).
-                string adminUserEmail = "Yahiawork11@gmail.com";
-                var adminUser = userManager.FindByEmail(adminUserEmail);
-                if (adminUser != null)
+                // 2. Create new admin user
+                var adminEmail = "yahiawork11@gmail.com";
+                var adminPassword = "12345";  // ✅ SET YOUR OWN PASSWORD HERE
+
+                var adminUser = userManager.FindByEmail(adminEmail);
+                if (adminUser == null)
                 {
-                    if (!userManager.IsInRole(adminUser.Id, adminRoleName))
+                    adminUser = new ApplicationUser
                     {
-                        userManager.AddToRole(adminUser.Id, adminRoleName);
+                        UserName = adminEmail,
+                        Email = adminEmail
+                    };
+                    var result = userManager.Create(adminUser, adminPassword);
+
+                    if (result.Succeeded)
+                    {
+                        userManager.AddToRole(adminUser.Id, "Admin");
                     }
                 }
-                else
+                else if (!userManager.IsInRole(adminUser.Id, "Admin"))
                 {
-                    // Optional: Handle case where admin user doesn't exist.
-                    // You might want to log this, or even create the user here if that's part of your startup logic.
-                    // For example (ensure you have a password and other required fields for ApplicationUser):
-                    // var newUser = new ApplicationUser { UserName = adminUserEmail, Email = adminUserEmail, EmailConfirmed = true };
-                    // var result = userManager.Create(newUser, "YourAdminPasswordHere"); // Replace with a strong password
-                    // if (result.Succeeded)
-                    // {
-                    //    userManager.AddToRole(newUser.Id, adminRoleName);
-                    // }
+                    userManager.AddToRole(adminUser.Id, "Admin");
                 }
             }
         }
+
     }
 }

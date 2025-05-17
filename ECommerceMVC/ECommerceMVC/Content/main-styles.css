@@ -1,0 +1,645 @@
+﻿/* General Body Styles - Default from Home.html theme */
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(118, 165, 169); /* Default theme from Home.html */
+    color: white;
+    margin: 0;
+    padding: 0; /* Ensure no default body padding unless intended */
+}
+
+/* Reset Styles */
+* {
+    box-sizing: border-box;
+}
+
+/* Header Styles (from Home.html, used in _Header.cshtml) */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Align items vertically */
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0; /* Ensure it spans full width from left */
+    z-index: 1000; /* Ensure header is on top */
+    /* background-color: transparent; */ /* Set by specific page or make it default if needed */
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+    nav ul li {
+        margin: 0 15px;
+        position: relative;
+    }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+        }
+
+/* Cart, Search, Settings Icons & Panels (from Home.html, used in _Header.cshtml) */
+.cart-icon .icon,
+.search-icon .icon {
+    cursor: pointer;
+}
+
+.cart-items,
+.search-container {
+    display: none;
+    position: absolute;
+    top: 30px; /* Adjust as needed based on icon size/header height */
+    right: 0;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    padding: 10px;
+    z-index: 1001; /* Above header content */
+}
+
+    .cart-items ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .cart-items ul li {
+            margin-bottom: 10px;
+        }
+
+    .search-container input {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+.settings-icon {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 1001;
+    color: white; /* Ensure visibility */
+}
+
+.settings-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    right: 50px; /* Adjusted to not overlap icon */
+    transform: translateY(-50%);
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    padding: 10px;
+    z-index: 1001;
+}
+
+/* Hero Section (from Home.html, used in Home/Index.cshtml) */
+.hero {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* Changed to column for better centering of text */
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    text-align: center; /* Center text */
+    padding: 20px; /* Add some padding */
+}
+
+.hero-text {
+    max-width: 600px; /* Max width for readability */
+    /* margin-left: 20px; */ /* Removed, as hero is centered */
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    margin-bottom: 20px; /* Added margin bottom */
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgb(46, 46, 45);
+    color: white !important; /* Ensure text color is white */
+    text-decoration: none;
+    border-radius: 5px;
+    border: none; /* Ensure no default border */
+}
+
+    .btn:hover {
+        background-color: #575656;
+        color: white !important;
+    }
+
+/* Styles for Product Details Page (from Details.cshtml and ROSE.html) */
+.product-details-body {
+    background-color: black;
+    color: white;
+}
+
+.about-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px; /* Added horizontal padding */
+    background-color: rgba(255, 255, 255, 0.05); /* Subtle background */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+    .about-section img {
+        max-width: 100%; /* Responsive image */
+        width: 300px; /* Max width for image */
+        height: auto;
+        border-radius: 10px;
+        margin-right: 20px;
+        margin-bottom: 20px; /* Margin for wrapped layout */
+    }
+
+.about-content {
+    max-width: 600px; /* Max width for content */
+    padding: 20px;
+}
+
+    .about-content h2 {
+        margin-bottom: 10px;
+        font-size: 2.5rem; /* Larger product title */
+    }
+
+    .about-content p {
+        font-size: 1.1em; /* Adjusted size */
+        line-height: 1.6;
+    }
+
+.star-rating {
+    color: gold;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.add-to-cart {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+    .add-to-cart .btn-add-to-cart { /* More specific class */
+        margin-right: 10px;
+        background: rgb(58, 57, 57);
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+        .add-to-cart .btn-add-to-cart:hover {
+            background-color: #575656;
+        }
+
+.counter {
+    font-size: 1.2em;
+}
+
+.description-section {
+    padding: 50px 20px;
+    background-color: rgba(0,0,0, 0.1); /* Darker subtle background for product pages */
+}
+
+    .description-section h2 {
+        margin-bottom: 20px;
+    }
+
+    .description-section p {
+        font-size: 1.1em;
+        line-height: 1.6;
+    }
+
+/* Related Products / You May Also Like Sections */
+.related-products h2,
+.you-may-also-like h2 {
+    margin-bottom: 20px;
+    /* margin-left:20px; */ /* Removed, use container padding */
+    margin-top: 20px;
+    text-align: center; /* Center these titles */
+}
+
+.product-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center; /* Center product cards */
+    padding: 0 10px; /* Padding for the container */
+}
+
+.product {
+    background: #222;
+    padding: 15px; /* Added padding inside product card */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    width: 220px; /* Slightly wider product cards */
+    text-align: left;
+    position: relative;
+    overflow: hidden; /* Keep this for overlay effect */
+    margin: 10px;
+    border-radius: 5px; /* Rounded corners for product cards */
+}
+
+    .product .img-container {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        margin-bottom: 10px;
+        border-radius: 3px; /* Rounded corners for image container */
+    }
+
+    .product img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .product:hover img {
+        transform: scale(1.1);
+    }
+
+    .product .product-title {
+        font-size: 1.1em; /* Larger product title in card */
+        color: white;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .product .product-description-short {
+        font-size: 0.9em;
+        color: #ccc;
+        margin-bottom: 10px;
+        flex-grow: 1; /* Allow description to take space */
+    }
+
+    .product .price {
+        font-weight: bold;
+        color: #27ae60;
+        margin-top: auto; /* Push price to bottom if card heights vary */
+        margin-bottom: 10px;
+        font-size: 1.2em;
+    }
+
+    .product .overlay {
+        position: absolute;
+        bottom: -46px; /* Initially hidden */
+        height: 44px;
+        background: rgba(255, 255, 255, 0.87);
+        line-height: 44px;
+        font-size: 16px;
+        color: #343434;
+        left: 0;
+        right: 0;
+        opacity: 1;
+        border-top: 1px solid rgba(0, 0, 0, 0.07);
+        transition: bottom 0.4s, background-color 0.3s, color 0.3s;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .product:hover .overlay {
+        bottom: 0;
+    }
+
+    .product .overlay .btn-view-details {
+        background-color: transparent;
+        color: #343434 !important;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+/* Footer Styles (from Home.html, used in _Footer.cshtml) */
+.footer {
+    /* margin-top: 20px; */ /* Let content flow naturally or use padding on main content */
+    background-color: #111; /* Darker footer */
+    color: #aaa; /* Lighter text for footer */
+    padding-top: 30px; /* Padding for footer content */
+}
+
+.footer-main {
+    /* padding: 20px 0; */ /* Handled by .footer padding */
+}
+
+.footer .widget-title {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.footer .textwidget p,
+.footer .textwidget ul li {
+    color: #aaa;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+.footer .textwidget ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.footer .product_list_widget .product-title {
+    color: white;
+}
+
+.footer .product_list_widget .Price-amount {
+    color: #27ae60;
+}
+
+.footer .product_list_widget img {
+    border-radius: 3px;
+}
+
+.footer .widget-contact-details-item {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+    .footer .widget-contact-details-item i {
+        margin-right: 10px;
+        color: white;
+    }
+
+    .footer .widget-contact-details-item a {
+        color: #aaa;
+        text-decoration: none;
+    }
+
+        .footer .widget-contact-details-item a:hover {
+            color: white;
+        }
+
+.footer-bottom {
+    padding: 20px 0;
+    background-color: #000; /* Even darker for bottom bar */
+    margin-top: 30px;
+    text-align: center;
+}
+
+    .footer-bottom .copyright {
+        margin-bottom: 0;
+        font-size: 0.9em;
+    }
+
+    .footer-bottom .social-icons a {
+        color: #aaa;
+        margin: 0 5px;
+        font-size: 1.2em;
+    }
+
+        .footer-bottom .social-icons a:hover {
+            color: white;
+        }
+
+/* Back To Top Button (from Home.html, used in _Footer.cshtml) */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #333; /* Darker button */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: none; /* JS will handle display */
+    transition: opacity 0.3s ease-in-out, background-color 0.3s;
+    z-index: 999;
+}
+
+    .back-to-top:hover {
+        background-color: #555; /* Lighter on hover */
+    }
+
+/* Styles for index1.html - index5.html content sections */
+/* These were originally separate pages, now integrated or partials */
+.home-content-section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+    .home-content-section h1, .home-content-section h2, .home-content-section h3 {
+        margin-bottom: 20px;
+    }
+
+/* Specifics from index1.html / index2.html (Learn About Us sections) */
+.learn-about-us-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around; /* Space out content and image */
+    flex-wrap: wrap;
+    padding: 50px 20px;
+    background-color: #171717; /* Dark background for these sections */
+}
+
+    .learn-about-us-section .text-content {
+        width: 100%;
+        max-width: 500px;
+        margin-bottom: 20px;
+    }
+
+    .learn-about-us-section .image-content {
+        width: 100%;
+        max-width: 500px;
+        height: 70vh; /* Match original iframe height roughly */
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border-radius: 5px;
+    }
+
+/* Specifics from index3.html (Best Sellers) */
+.best-sellers-section p {
+    color: #bbb; /* Lighter than default body text for these paragraphs */
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+/* Specifics from index4.html (Why Our Store / Info Blocks) */
+.why-our-store-section p {
+    color: #bbb;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.info-block {
+    width: 300px; /* Adjusted width */
+    margin: 15px;
+    text-align: left;
+    padding: 20px;
+    background-color: #222; /* Background for info blocks */
+    border-radius: 5px;
+}
+
+    .info-block h3 {
+        margin-bottom: 10px;
+    }
+
+    .info-block p {
+        color: #ccc !important; /* Ensure this color is applied */
+        font-size: 0.9em;
+    }
+
+/* Specifics from index5.html (Call to Action) */
+.call-to-action-section {
+    padding: 60px 20px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    color: white;
+    text-align: center;
+}
+
+    .call-to-action-section .container {
+        /* background-color: rgba(0,0,0,0.5); */ /* Optional: semi-transparent overlay for text readability */
+        padding: 20px;
+        border-radius: 10px;
+        display: inline-block; /* To contain the background if used */
+    }
+
+    .call-to-action-section h1 {
+        margin-bottom: 10px;
+    }
+
+    .call-to-action-section p {
+        margin-bottom: 20px;
+    }
+
+    .call-to-action-section .btn-visit-shop {
+        padding: 12px 25px;
+        font-size: 1.1em;
+        background-color: #323231;
+        color: white !important;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+        .call-to-action-section .btn-visit-shop:hover {
+            background-color: #575656;
+        }
+
+/* Container for main body content to constrain width and center */
+.body-content {
+    padding: 20px 15px; /* Padding for main content area */
+    margin-top: 60px; /* Adjust based on header height */
+    margin-bottom: 20px;
+    min-height: calc(100vh - 120px); /* Ensure footer is pushed down */
+}
+
+/* Signup page specific styles - already in signup.css, but if any overrides needed for layout */
+.signup-container {
+    max-width: 450px;
+    margin: 80px auto 20px auto; /* Top margin to clear header */
+    background: #1e1e1e;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+    .signup-container h2 {
+        text-align: center;
+        color: #e0e0e0;
+        margin-bottom: 20px;
+    }
+
+    .signup-container label {
+        display: block;
+        margin: 10px 0 5px;
+        color: #e0e0e0;
+    }
+
+    .signup-container input[type="text"],
+    .signup-container input[type="email"],
+    .signup-container input[type="number"],
+    .signup-container input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #333;
+        border-radius: 4px;
+        background-color: #2c2c2c;
+        color: #e0e0e0;
+    }
+
+    .signup-container button[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background-color: #eaeceb;
+        color: rgb(5, 5, 5);
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1.1em;
+        /* margin-left: 10px; */ /* Removed, button is full width */
+    }
+
+        .signup-container button[type="submit"]:hover {
+            background-color: #bdbdbd;
+        }
+
+    .signup-container .error {
+        color: red;
+        font-size: 0.9em;
+        display: block; /* Ensure it takes its own line */
+        margin-top: -10px; /* Adjust spacing */
+        margin-bottom: 10px;
+    }
+
+    .signup-container #message {
+        text-align: center;
+        margin-top: 15px;
+        color: #27ae60; /* Green for success messages */
+    }
